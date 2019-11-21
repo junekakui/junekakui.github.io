@@ -1,0 +1,77 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="Just do it!"><title>LeetCode—1twoSum | Junekakui</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/8.0.1/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/3.4.0/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><meta name="generator" content="Hexo 4.0.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">LeetCode—1twoSum</h1><a id="logo" href="/.">Junekakui</a><p class="description">黑眼圈肥猫的进阶路</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">LeetCode—1twoSum</h1><div class="post-meta">Nov 19, 2019</div><a class="disqus-comment-count" data-disqus-identifier="2019/11/19/LeetCode—1twoSum/" href="/2019/11/19/LeetCode%E2%80%941twoSum/#disqus_thread"></a><div class="post-content"><h2 id="题目概述"><a href="#题目概述" class="headerlink" title="题目概述"></a>题目概述</h2><p>简单</p>
+<p>给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。</p>
+<p>你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。</p>
+<p>示例:</p>
+<p>给定 nums = [2, 7, 11, 15], target = 9</p>
+<p>因为 nums[0] + nums[1] = 2 + 7 = 9<br>所以返回 [0, 1]</p>
+<h2 id="第一次思路"><a href="#第一次思路" class="headerlink" title="第一次思路"></a>第一次思路</h2><p>暴力循环，依次查找</p>
+<h3 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;int&gt; twoSum(vector&lt;int&gt;&amp; nums, int target) &#123;</span><br><span class="line">        vector&lt;int&gt; result;</span><br><span class="line">        for(int i = 0;i &lt; nums.size();++i)</span><br><span class="line">        &#123;</span><br><span class="line">            for(int j = i + 1;j &lt; nums.size();++j)</span><br><span class="line">            &#123;</span><br><span class="line">                if(nums[i] + nums[j] == target)</span><br><span class="line">                &#123;</span><br><span class="line">                    result.push_back(i);</span><br><span class="line">                    result.push_back(j);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="方法总结"><a href="#方法总结" class="headerlink" title="方法总结"></a>方法总结</h2><ol>
+<li>暴力循环法</li>
+</ol>
+<ul>
+<li>如上</li>
+</ul>
+<ol start="2">
+<li>两遍哈希表</li>
+</ol>
+<ul>
+<li>将数组中的元素和元素的索引依次放到哈希表中</li>
+<li>第一次循环：数组中的元素和元素的索引依次放到哈希表中</li>
+<li>第二次循环：查找目标元素<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;int&gt; twoSum(vector&lt;int&gt;&amp; nums, int target) &#123;</span><br><span class="line">        map&lt;int,int&gt; a;//建立hash表存放数组元素</span><br><span class="line">        vector&lt;int&gt; b(2,-1);//存放结果</span><br><span class="line">        for(int i=0;i&lt;nums.size();i++)</span><br><span class="line">            a.insert(map&lt;int,int&gt;::value_type(nums[i],i));</span><br><span class="line">        for(int i=0;i&lt;nums.size();i++)</span><br><span class="line">        &#123;</span><br><span class="line">            if(a.count(target-nums[i])&gt;0&amp;&amp;(a[target-nums[i]]!=i))</span><br><span class="line">            //判断是否找到目标元素且目标元素不能是本身</span><br><span class="line">            &#123;</span><br><span class="line">                b[0]=i;</span><br><span class="line">                b[1]=a[target-nums[i]];</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return b;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<ol start="3">
+<li>一遍哈希表</li>
+</ol>
+<ul>
+<li>将数组中的元素和元素的索引依次放到哈希表中</li>
+<li>在投放数据的同时，在已有的元素中查找目标元素</li>
+<li>如果查找到目标元素，则直接返回向量；如果没查找到，则将数组中的元素放到哈希表中，继续下一次循环<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;int&gt; twoSum(vector&lt;int&gt;&amp; nums, int target) &#123;</span><br><span class="line">        map&lt;int, int&gt; dict;</span><br><span class="line">        for (int i = 0; i &lt; nums.size(); i++)</span><br><span class="line">            if (dict.count(target - nums[i]))</span><br><span class="line">                return &#123;dict[target - nums[i]], i&#125;;</span><br><span class="line">            else</span><br><span class="line">                dict[nums[i]] = i;</span><br><span class="line">        return &#123;0, 0&#125;;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</div><div class="tags"></div><div class="post-nav"><a class="next" href="/2019/11/19/LeetCode%E2%80%9413romanToInt/">LeetCode—13romanToInt</a></div><div id="disqus_thread"><div class="btn_click_load"><button class="disqus_click_btn">阅读评论（请确保 Disqus 可以正常加载）</button></div><script type="text/javascript">var disqus_config = function () {
+    this.page.url = 'http://junekakui.github.io/2019/11/19/LeetCode—1twoSum/';
+    this.page.identifier = '2019/11/19/LeetCode—1twoSum/';
+    this.page.title = 'LeetCode—1twoSum';
+  };</script><script type="text/javascript" id="disqus-lazy-load-script">$.ajax({
+url: 'https://disqus.com/next/config.json',
+timeout: 2500,
+type: 'GET',
+success: function(){
+  var d = document;
+  var s = d.createElement('script');
+  s.src = '//Junekakui## Your disqus_shortname, e.g. username.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', + new Date());
+  (d.head || d.body).appendChild(s);
+  $('.disqus_click_btn').css('display', 'none');
+},
+error: function() {
+  $('.disqus_click_btn').css('display', 'block');
+}
+});</script><script type="text/javascript" id="disqus-click-load">$('.btn_click_load').click(() => {  //click to load comments
+    (() => { // DON'T EDIT BELOW THIS LINE
+        var d = document;
+        var s = d.createElement('script');
+        s.src = '//Junekakui## Your disqus_shortname, e.g. username.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', + new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+    $('.disqus_click_btn').css('display','none');
+});</script><script type="text/javascript" id="disqus-count-script">$(function() {
+     var xhr = new XMLHttpRequest();
+     xhr.open('GET', '//disqus.com/next/config.json', true);
+     xhr.timeout = 2500;
+     xhr.onreadystatechange = function () {
+       if (xhr.readyState === 4 && xhr.status === 200) {
+         $('.post-meta .post-comments-count').show();
+         var s = document.createElement('script');
+         s.id = 'dsq-count-scr';
+         s.src = 'https://Junekakui## Your disqus_shortname, e.g. username.disqus.com/count.js';
+         s.async = true;
+         (document.head || document.body).appendChild(s);
+       }
+     };
+     xhr.ontimeout = function () { xhr.abort(); };
+     xhr.send(null);
+   });
+</script></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="http://junekakui.github.io"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/11/19/LeetCode%E2%80%941twoSum/">LeetCode—1twoSum</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/19/LeetCode%E2%80%9413romanToInt/">LeetCode—13romanToInt</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/17/LeetCode%E2%80%949isPalindrome/">LeetCode—9isPalindrome</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/17/LeetCode%E2%80%947reserve_int/">LeetCode—7reserve_int</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/14/mysql8.0%E5%BF%98%E8%AE%B0%E5%AF%86%E7%A0%81%E6%88%96%E5%87%BA%E7%8E%B0%E4%B8%8D%E5%8F%AF%E8%AE%BF%E9%97%AE/">mysql8.0忘记密码或出现不可访问</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/14/bs%E5%A4%84%E7%90%86%E5%90%8E%E7%9A%84%E6%BA%90%E4%BB%A3%E7%A0%81%E7%94%A8%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E9%9C%80%E8%A6%81%E8%BD%AC%E5%8C%96%E6%A0%BC%E5%BC%8F/">bs处理后的源代码用正则表达式需要转化格式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/14/C++%E5%AD%A6%E4%B9%A0%E2%80%94%E5%87%BD%E6%95%B0/">C++学习—函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/14/C++%E5%AD%A6%E4%B9%A0%E2%80%94%E8%AF%AD%E5%8F%A5/">C++学习—语句</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/14/C++%E5%AD%A6%E4%B9%A0%E2%80%94%E5%88%9D%E6%AD%A5%E8%AE%A4%E8%AF%86/">C++学习—初步认识</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="https://blog.csdn.net/Junekakui" title="CSDN" target="_blank">CSDN</a><ul></ul><a href="https://github.com/junekakui" title="Github" target="_blank">Github</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2019 <a href="/." rel="nofollow">Junekakui.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
